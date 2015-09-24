@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#CD96CD</color>
+    <color name="primary_dark">#CD69C9</color>
+    <!-- checkbox 的填充色-->
+    <color name="accent">#CD00CD</color>
+    <color name="textcolor">#ffffff</color>
+    <color name="black">#000000</color>
+</resources>
