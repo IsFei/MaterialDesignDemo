@@ -79,9 +79,9 @@ public class RActivity extends ActionBarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Transition ts = new ChangeTransform();
+//                Transition ts = new ChangeTransform();
 //                ts.setDuration(3000);
-                getWindow().setExitTransition(ts);
+//                getWindow().setExitTransition(ts);
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RActivity.this, button, "shareName");
                 Intent intent = new Intent(RActivity.this, NewAty.class);
                 startActivity(intent, options.toBundle());
@@ -96,6 +96,7 @@ public class RActivity extends ActionBarActivity {
                 Transition ts = new ChangeTransform();
                 ts.setDuration(3000);
                 getWindow().setExitTransition(ts);
+                //需要用pair"绑"一下
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RActivity.this,
                         new Pair<View, String>(button, "shareName"),
                         new Pair<View, String>(button3, "shareName2"));
@@ -142,7 +143,7 @@ public class RActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // 為了讓 Toolbar 的 Menu 有作用，這邊的程式不可以拿掉
+        // 为了让 Toolbar 的 Menu 有作用，这行代码不可以拿掉
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
