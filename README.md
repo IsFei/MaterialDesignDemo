@@ -1,5 +1,13 @@
 # MaterialDesignDemo
 之前都是在跟着老师学，前段时间经一个大牛点播发现安卓去年跟着5.0发布而一起发布的MaterialDesign以及一些新功能，就慢慢自学
-编码也不规范，以后慢慢改吧
-主要是跟着5.0出来的CardView和RecyclerView以及一些transition  
-第一个界面用的toolbar  图片素材比较少箭头方向不要介意
+编码不规范，以后慢慢改吧
+主要是一些新东西，之前学的实在是太少了~
+不怕学的晚，就怕不学。
+
+MainActivity里有替代listview的RecyclerView   需要一个线性布局管理器LinearLayoutManager
+里面的item是CardView   功能比较强大，现在只是初学，其它功能以后再加吧
+RActivity 界面采用的用来代替actionbar的toolbar，比actionbar要灵活。要用它需要去隐藏actionbar。
+用DrawerLayout拉出NavigationView时可以看下toolbar左上角的图标，简直不能再赞
+navigationview作为新出来的控件，使用需要在gradle里加依赖 compile 'com.android.support:design:22.2.0'
+一些在5.0后的Activity之间的跳转动画，对于共享元素的跳转实在是值得看，用好了在交互上相当有用。其它的还没研究好
+简单的用了下palette
