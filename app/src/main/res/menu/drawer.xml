@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <!-- android:checkableBehavior="single" 每次只有一个被选中
+        但是我去掉后发现没什么变化-->
+        <item
+            android:id="@+id/item_one"
+            android:icon="@drawable/more_emoji_store"
+            android:title="表情"></item>
+        <item
+            android:id="@+id/item_two"
+            android:icon="@drawable/more_my_album"
+            android:title="图片"></item>
+        <item
+            android:id="@+id/item_three"
+            android:icon="@drawable/more_my_bank_card"
+            android:title="卡包"></item>
+    </group>
+</menu>

@@ -1,11 +1,13 @@
 package com.gaofei.materialdesignd;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.transition.ChangeTransform;
 import android.transition.Explode;
 import android.transition.Transition;
@@ -16,27 +18,63 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 /**
  * Created by lenovo on 2015/9/9.
  */
 public class RActivity extends ActionBarActivity {
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_r);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        //设置toolbar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        toolbar.setLogo(R.mipmap.ic_launcher);
         toolbar.setTitle("DEMO");
         toolbar.setSubtitle("Material Design");
-        toolbar.setNavigationIcon(R.drawable.btn_arrows);
-        setActionBar(toolbar);
-//        setNavigationIcon在setActionBar方法后
+//        setsActionBar(toolbar);
+        setSupportActionBar(toolbar);
+//        setNavigationIcon在setActionBar方法后,不然出现三个横线那个图标
+//        toolbar.setNavigationIcon(R.drawable.btn_arrows);
         // Menu item click 要在 setActionBar 后才有作用
         toolbar.setOnMenuItemClickListener(onMenuItemClick);
+        toolbar.isOverflowMenuShowing();
 
+
+        //设置抽屉DrawerLayout
+        final DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(RActivity.this, mDrawerLayout, toolbar,
+                R.string.drawer_open, R.string.drawer_close);
+        mDrawerToggle.syncState();//初始化状态
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        //设置导航栏NavigationView的点击事件
+        NavigationView mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.item_one:
+                        toolbar.setTitle("表情");
+                        break;
+                    case R.id.item_two:
+                        toolbar.setTitle("图片");
+                        break;
+                    case R.id.item_three:
+                        toolbar.setTitle("卡包");
+                        break;
+                }
+                menuItem.setChecked(true);//点击了把它设为选中状态
+                mDrawerLayout.closeDrawers();//关闭抽屉
+                return true;
+            }
+        });
+
+
+        //1共同元素的跳转
         final Button button = (Button) findViewById(R.id.button1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,11 +88,21 @@ public class RActivity extends ActionBarActivity {
             }
         });
 
-
-        // 允许使用transitions
-//        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        // 设置一个exit transition
-//        getWindow().setExitTransition(new Explode());
+        //2共同元素的跳转
+        final Button button3 = (Button) findViewById(R.id.button3);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Transition ts = new ChangeTransform();
+                ts.setDuration(3000);
+                getWindow().setExitTransition(ts);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RActivity.this,
+                        new Pair<View, String>(button, "shareName"),
+                        new Pair<View, String>(button3, "shareName2"));
+                Intent intent = new Intent(RActivity.this, NewAty.class);
+                startActivity(intent, options.toBundle());
+            }
+        });
 
         ((Button) findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,11 +111,10 @@ public class RActivity extends ActionBarActivity {
             }
         });
 
-
         ((Button) findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RActivity.this, NewAty.class),ActivityOptions.makeSceneTransitionAnimation(RActivity.this).toBundle());
+                startActivity(new Intent(RActivity.this, NewAty.class), ActivityOptions.makeSceneTransitionAnimation(RActivity.this).toBundle());
             }
         });
     }

@@ -19,9 +19,8 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.Recycler" />
-        <activity
-            android:name=".NewAty"
-            android:theme="@style/AppTheme.Recycler" />
+        <activity android:name=".NewAty" />
+        <activity android:name=".PicAty" />
     </application>
 
 </manifest>

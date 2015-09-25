@@ -1,16 +1,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".RActivity">
-
+    tools:context=".RActivity"
+    >
 
     <item
         android:id="@+id/action_edit"
         android:icon="@drawable/ofm_remarks_icon"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:title="编辑"
-        />
+        android:title="编辑" />
 
     <item
         android:id="@+id/action_delete"
