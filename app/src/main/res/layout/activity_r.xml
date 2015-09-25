@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/button1"
             android:layout_below="@+id/button1"
-            android:text="共同元素2"
+            android:text="共享元素2"
             android:textColor="#000000"
             android:transitionName="shareName2" />
     </RelativeLayout>

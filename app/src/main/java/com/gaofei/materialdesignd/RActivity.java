@@ -128,7 +128,7 @@ public class RActivity extends ActionBarActivity {
                     msg += "Click edit";
                     break;
                 case R.id.action_delete:
-                    msg += "Click share";
+                    msg += "Click delete";
                     break;
             }
 
