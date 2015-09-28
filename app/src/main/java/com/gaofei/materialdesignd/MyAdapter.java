@@ -7,14 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Created by lenovo on 2015/9/9.
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private String[] mDataset;
+    private List<String> mDataset;
     private static LayoutInflater layoutInflater;
+    public  OnItemClickListener mItemClickListener;
 
-    public MyAdapter(String[] dataset,Context context) {
+    public MyAdapter(List<String> dataset,Context context) {
         super();
         mDataset = dataset;
         layoutInflater=LayoutInflater.from(context);
@@ -32,20 +35,37 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(MyAdapter.ViewHolder viewHolder, int i) {
         // 绑定数据到ViewHolder上
-        viewHolder.mTextView.setText(mDataset[i]);
+        viewHolder.mTextView.setText(mDataset.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements
+            View.OnClickListener{
         public TextView mTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mTextView = (TextView)itemView.findViewById(R.id.textview) ;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            if (mItemClickListener != null) {
+                mItemClickListener.onItemClick(v, getPosition());
+            }
+        }
+    }
+
+    public interface OnItemClickListener {
+        public void onItemClick(View view, int position);
+    }
+
+    public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
+        this.mItemClickListener = mItemClickListener;
     }
 }

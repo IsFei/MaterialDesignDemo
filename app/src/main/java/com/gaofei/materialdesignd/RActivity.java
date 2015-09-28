@@ -73,7 +73,7 @@ public class RActivity extends ActionBarActivity {
             }
         });
 
-
+//Activity之间的跳转   当你要关闭第二个Activity时，要反转过渡动画，那么可以调用Activity.finishAfterTransition()方法,而不是Activity.finish()
         //1共同元素的跳转
         final Button button = (Button) findViewById(R.id.button1);
         button.setOnClickListener(new View.OnClickListener() {
