@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.graphics.Palette;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.RelativeLayout;
 
@@ -57,13 +58,22 @@ public class PicAty extends Activity {
                         }
                     }
                 });
-
                 Animator animator = ViewAnimationUtils.createCircularReveal(mRelativeLayout,
-                        mRelativeLayout.getWidth(), mRelativeLayout.getHeight(), 0,
-                        (float) Math.hypot(mRelativeLayout.getWidth(), mRelativeLayout.getHeight()));
-                animator.setInterpolator(new AccelerateInterpolator());
+                        mRelativeLayout.getWidth(),
+                        mRelativeLayout.getHeight(),
+                        (float) Math.hypot(mRelativeLayout.getWidth(), mRelativeLayout.getHeight()), 0);
+//                animator.setInterpolator(new AccelerateInterpolator());
+                animator.setInterpolator(new AccelerateDecelerateInterpolator());
                 animator.setDuration(300);
                 animator.start();
+                Animator animator1 = ViewAnimationUtils.createCircularReveal(mRelativeLayout,
+                        mRelativeLayout.getWidth(), mRelativeLayout.getHeight(), 0,
+                        (float) Math.hypot(mRelativeLayout.getWidth(), mRelativeLayout.getHeight()));
+                animator1.setInterpolator(new AccelerateInterpolator());
+//                animator.setInterpolator(new AccelerateDecelerateInterpolator());
+                animator1.setDuration(300);
+                animator1.setStartDelay(300);
+                animator1.start();
 
             }
         });
