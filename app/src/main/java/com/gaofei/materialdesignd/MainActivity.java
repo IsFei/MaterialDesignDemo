@@ -61,7 +61,7 @@ public class MainActivity extends Activity {
             dataset.add(i,"item1"+ (i));
         }
         mAdapter.notifyItemRangeInserted(0,n);
-//        mRecyclerView.getRefreshableView.smoothScrollToPosition(0);
+        mRecyclerView.smoothScrollToPosition(0);
     }
 
     private void removeItem(int position) {
