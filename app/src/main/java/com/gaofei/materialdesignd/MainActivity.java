@@ -4,13 +4,17 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.support.design.widget.FloatingActionButton;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends Activity {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private MyAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
+    private List<String> dataset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,27 +34,41 @@ public class MainActivity extends Activity {
         // 设置布局管理器
         mRecyclerView.setLayoutManager(mLayoutManager);
         // 创建数据集
-        String[] dataset = new String[100];
-        for (int i = 0; i < dataset.length; i++) {
-            dataset[i] = "item" + i;
+        dataset= new ArrayList<String>();
+        for (int i = 0; i <20; i++) {
+            dataset.add(i,"item"+ (i+1));
         }
         // specify an adapter (see also next example)
         mAdapter = new MyAdapter(dataset, this);
+        mAdapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                removeItem(position);
+            }
+        });
         mRecyclerView.setAdapter(mAdapter);
+
+        ((FloatingActionButton)findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addItem(3);
+            }
+        });
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            // 当点击actionbar上的添加按钮时，向adapter中添加一个新数据并通知刷新
-//            case R.id.action_add:
-//
-//                return true;
-//            // 当点击actionbar上的删除按钮时，向adapter中移除最后一个数据并通知刷新
-//            case R.id.action_remove:
-//
-//                return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    private void addItem(int n) {
+        for (int i = 0; i <n; i++) {
+            dataset.add(i,"item1"+ (i));
+        }
+        mAdapter.notifyItemRangeInserted(0,n);
+//        mRecyclerView.getRefreshableView.smoothScrollToPosition(0);
+    }
+
+    private void removeItem(int position) {
+        dataset.remove(position);
+        mAdapter.notifyItemRemoved(position);
+    }
+
+
+
 }
