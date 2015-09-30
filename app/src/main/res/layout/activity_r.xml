@@ -4,6 +4,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
@@ -56,6 +57,7 @@
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:elevation="16dp"
         android:layout_gravity="left"
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/drawer"

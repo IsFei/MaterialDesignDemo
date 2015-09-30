@@ -11,6 +11,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -22,7 +23,7 @@ import android.widget.RelativeLayout;
 /**
  * Created by lenovo on 2015/9/24.
  */
-public class NewAty extends ActionBarActivity {
+public class NewAty extends AppCompatActivity {
     private Toolbar toolbar;
     private ImageView mImageView;
 

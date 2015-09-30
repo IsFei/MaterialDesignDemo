@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,7 +23,7 @@ import android.widget.Toast;
 /**
  * Created by lenovo on 2015/9/9.
  */
-public class RActivity extends ActionBarActivity {
+public class RActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     @Override

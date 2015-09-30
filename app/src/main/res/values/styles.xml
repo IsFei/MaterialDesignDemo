@@ -1,9 +1,6 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <!--<style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">-->
-        <!-- Customize your theme here. -->
-    <!--</style>-->
+    <!-- 如果5.1以上，可以直接用这个-->
     <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
         <!--<item name="android:windowActionBar">false</item>-->
         <!--<item name="android:windowNoTitle">true</item>-->
@@ -18,8 +15,16 @@
         <item name="android:textColorPrimary">@color/textcolor</item>
     </style>
     <style name="AppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
+        <!-- Main theme colors -->
+        <!--   your app's branding color (for the app bar) -->
+        <item name="android:colorPrimary">@color/primary</item>
+        <!--   darker variant of colorPrimary (for status bar, contextual app bars) -->
+        <item name="android:colorPrimaryDark">@color/primary_dark</item>
+        <!--   theme UI controls like checkboxes and text fields -->
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:textColorPrimary">@color/textcolor</item>
+        <item name="android:overlapAnchor">false</item>
+        <item name="overlapAnchor">false</item>
     </style>
 
 </resources>

@@ -14,6 +14,9 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.RelativeLayout;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by lenovo on 2015/9/25.
  */
@@ -41,32 +44,40 @@ public class PicAty extends Activity {
                 animator.setInterpolator(new AccelerateDecelerateInterpolator());
                 animator.setDuration(300);
                 animator.start();
-
-                //
-                Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.bg7);
-                //用palette取色
-                Palette.generateAsync(bmp, new Palette.PaletteAsyncListener() {
+                Timer timer = new Timer();
+                TimerTask task = new TimerTask() {
                     @Override
-                    public void onGenerated(Palette palette) {
+                    public void run() {
+
+                        //
+                        Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.bg7);
+                        //用palette取色
+                        Palette.generateAsync(bmp, new Palette.PaletteAsyncListener() {
+                            @Override
+                            public void onGenerated(Palette palette) {
 //                1. Palette.Swatch s1 = Palette.getVibrantSwatch(); //充满活力的色板
 //                2. Palette.Swatch s2 = Palette.getDarkVibrantSwatch(); //充满活力的暗色类型色板
 //                3. Palette.Swatch s3 = Palette.getLightVibrantSwatch(); //充满活力的亮色类型色板
 //                4. Palette.Swatch s4 = Palette.getMutedSwatch(); //黯淡的色板
 //                5. Palette.Swatch s5 = Palette.getDarkMutedSwatch(); //黯淡的暗色类型色板
 //                6. Palette.Swatch s6 = Palette.getLightMutedSwatch(); //黯淡的亮色类型色板
-                        Palette.Swatch swatch = palette.getLightVibrantSwatch();
-                        if (null != swatch) {
-                            //getRgb()返回的是该色板上的一个rbg颜色
-                            // getTitleTextColor()返回的android建议的一个用于任何标题的颜色
-                            // getBodyTextColor()返回的是android建议的一个用于任何body的颜色
-                            mRelativeLayout.setBackgroundColor(colorBurn(swatch.getRgb()));
+                                Palette.Swatch swatch = palette.getLightVibrantSwatch();
+                                if (null != swatch) {
+                                    //getRgb()返回的是该色板上的一个rbg颜色
+                                    // getTitleTextColor()返回的android建议的一个用于任何标题的颜色
+                                    // getBodyTextColor()返回的是android建议的一个用于任何body的颜色
+                                    mRelativeLayout.setBackgroundColor(colorBurn(swatch.getRgb()));
 
 //                    Window window = getWindow();
 //                    window.setStatusBarColor(colorBurn(swatch.getRgb()));
 //                    window.setNavigationBarColor(colorBurn(swatch.getRgb()));
-                        }
+                                }
+                            }
+                        });
+
                     }
-                });
+                };
+                timer.schedule(task, 300);
 
                 Animator animator1 = ViewAnimationUtils.createCircularReveal(mRelativeLayout,
                         mRelativeLayout.getWidth(), mRelativeLayout.getHeight(), 0,
