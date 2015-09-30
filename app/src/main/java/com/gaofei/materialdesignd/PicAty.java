@@ -33,6 +33,15 @@ public class PicAty extends Activity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Animator animator = ViewAnimationUtils.createCircularReveal(mRelativeLayout,
+                        mRelativeLayout.getWidth(),
+                        mRelativeLayout.getHeight(),
+                        (float) Math.hypot(mRelativeLayout.getWidth(), mRelativeLayout.getHeight()), 0);
+//                animator.setInterpolator(new AccelerateInterpolator());
+                animator.setInterpolator(new AccelerateDecelerateInterpolator());
+                animator.setDuration(300);
+                animator.start();
+
                 //
                 Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.bg7);
                 //用palette取色
@@ -58,14 +67,7 @@ public class PicAty extends Activity {
                         }
                     }
                 });
-                Animator animator = ViewAnimationUtils.createCircularReveal(mRelativeLayout,
-                        mRelativeLayout.getWidth(),
-                        mRelativeLayout.getHeight(),
-                        (float) Math.hypot(mRelativeLayout.getWidth(), mRelativeLayout.getHeight()), 0);
-//                animator.setInterpolator(new AccelerateInterpolator());
-                animator.setInterpolator(new AccelerateDecelerateInterpolator());
-                animator.setDuration(300);
-                animator.start();
+
                 Animator animator1 = ViewAnimationUtils.createCircularReveal(mRelativeLayout,
                         mRelativeLayout.getWidth(), mRelativeLayout.getHeight(), 0,
                         (float) Math.hypot(mRelativeLayout.getWidth(), mRelativeLayout.getHeight()));
